@@ -110,6 +110,7 @@ local plugins = {
         build = ":MasonUpdate",
         cmd = { "Mason", "MasonInstall" },
         config = function()
+            -- require("plugins.configs.mason")
             require("mason").setup()
         end,
     },
@@ -178,14 +179,14 @@ local plugins = {
         lazy = false,
     },
 
-    -- Adds :Rename, :SudoWrite
-    "tpope/vim-eunuch",
-
     -- Adds [b and other handy mappings
     "tpope/vim-unimpaired",
 
     -- Jump to the last location when opening a file
-    "farmergreg/vim-lastplace",
+    {
+        "farmergreg/vim-lastplace",
+        event = {"BufReadPre", "BufNewFile"},
+    },
 
     -- Allow plugins to enable repeating of commands
     "tpope/vim-repeat",
@@ -196,14 +197,14 @@ local plugins = {
     -- Add more language support
     {
         "sheerun/vim-polyglot",
-        lazy = false,
+         event = "VeryLazy",
     },
 
-    -- Automatically create parent dirs when saving
-    "jessarcher/vim-heritage",
-
     -- Enale * searching with visually selected text
-    "nelstrom/vim-visual-star-search",
+    {
+        "nelstrom/vim-visual-star-search",
+        event = {"BufNewFile", "BufReadPre"},
+    },
 
     -- Automatically fix indentation when pasting code
     {
@@ -256,25 +257,16 @@ local plugins = {
     -- Color picker
     {
         "uga-rosa/ccc.nvim",
-        lazy = false,
+        event  = "VeryLazy",
         config = function()
             require("ccc").setup()
-        end,
-    },
-
-    -- Highlight same colors
-    {
-        "rrethy/vim-illuminate",
-        lazy = false,
-        config = function()
-            require("plugins.configs.vim-illuminate")
         end,
     },
 
     -- Smooth scrolling
     {
         "karb94/neoscroll.nvim",
-        lazy = false,
+        event = "VeryLazy",
         config = function()
             require("neoscroll").setup()
         end,
@@ -283,7 +275,7 @@ local plugins = {
     -- Add a scrollbar
     {
         "petertriho/nvim-scrollbar",
-        lazy = false,
+        event = "VeryLazy",
         config = function()
             require("scrollbar").setup()
         end,
@@ -299,14 +291,14 @@ local plugins = {
     {
         "folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
-        lazy = false,
+        event = "VeryLazy",
         config = function()
             require("todo-comments").setup()
         end,
     },
     {
         'phpactor/phpactor',
-        ft = 'php',
+        ft = 'php, blade',
         build = 'composer install --no-dev --optimize-autoloader',
         config = function()
             vim.keymap.set('n', '<leader>pm', ':PhpactorContextMenu<CR>')

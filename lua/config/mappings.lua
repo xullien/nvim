@@ -33,8 +33,8 @@ map('n', '<C-Left>', ':vertical resize -2<CR>')
 map('n', '<C-Right>', ':vertical resize +2<CR>')
 
 -- Easy insertion of a trailing ; or , from insert mode
-map('i', ';;', '<Esc>A;<Esc>')
-map('i', ',,', '<Esc>A,<Esc>')
+-- map('i', ';;', '<Esc>A;<Esc>')
+-- map('i', ',,', '<Esc>A,<Esc>')
 
 -- When text is wrapped, move by terminal rows, not lines, unless a count is provided
 map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })

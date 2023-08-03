@@ -1,3 +1,4 @@
+local lazy = require("lazy")
 local plugins = {
     "nvim-lua/plenary.nvim",
 
@@ -5,7 +6,7 @@ local plugins = {
     {
         "catppuccin/nvim",
         name = "catppuccin",
-        priority = 1000
+        priority = 1000,
     },
 
     -- file tree
@@ -31,7 +32,7 @@ local plugins = {
         build = ":TSUpdate",
         event = { "BufReadPre", "BufNewFile" },
         config = function()
-            require "plugins.configs.treesitter"
+            require("plugins.configs.treesitter")
         end,
     },
 
@@ -40,7 +41,7 @@ local plugins = {
         "akinsho/bufferline.nvim",
         lazy = false,
         config = function()
-            require "plugins.configs.bufferline"
+            require("plugins.configs.bufferline")
         end,
     },
 
@@ -50,7 +51,7 @@ local plugins = {
         "echasnovski/mini.statusline",
         lazy = false,
         config = function()
-            require("mini.statusline").setup { set_vim_settings = false }
+            require("mini.statusline").setup({ set_vim_settings = false })
         end,
     },
 
@@ -87,14 +88,14 @@ local plugins = {
                     require("nvim-autopairs").setup()
 
                     --  cmp integration
-                    local cmp_autopairs = require "nvim-autopairs.completion.cmp"
-                    local cmp = require "cmp"
+                    local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+                    local cmp = require("cmp")
                     cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
                 end,
             },
         },
         config = function()
-            require "plugins.configs.cmp"
+            require("plugins.configs.cmp")
         end,
     },
 
@@ -112,14 +113,14 @@ local plugins = {
         "neovim/nvim-lspconfig",
         event = { "BufReadPre", "BufNewFile" },
         config = function()
-            require "plugins.configs.lspconfig"
+            require("plugins.configs.lspconfig")
         end,
         dependencies = {
             -- formatting , linting
             {
                 "jose-elias-alvarez/null-ls.nvim",
                 config = function()
-                    require "plugins.configs.null"
+                    require("plugins.configs.null")
                 end,
             },
         },
@@ -139,7 +140,7 @@ local plugins = {
         "nvim-telescope/telescope.nvim",
         cmd = "Telescope",
         config = function()
-            require "plugins.configs.telescope"
+            require("plugins.configs.telescope")
         end,
     },
 
@@ -160,44 +161,49 @@ local plugins = {
         end,
     },
     -- Add, change, and delete surrouding text
-    'tpope/vim-surround',
+    "tpope/vim-surround",
 
     -- Adds :Rename, :SudoWrite
-    'tpope/vim-eunuch',
+    "tpope/vim-eunuch",
 
     -- Adds [b and other handy mappings
-    'tpope/vim-unimpaired',
+    "tpope/vim-unimpaired",
 
     -- Jump to the last location when opening a file
-    'farmergreg/vim-lastplace',
+    "farmergreg/vim-lastplace",
 
     -- Allow plugins to enable repeating of commands
-    'tpope/vim-repeat',
+    "tpope/vim-repeat",
 
     -- Indent autodetection with editorconfig support
-    'tpope/vim-sleuth',
+    "tpope/vim-sleuth",
 
     -- Add more language support
-    'sheerun/vim-polyglot',
+    "sheerun/vim-polyglot",
 
     -- Automatically create parent dirs when saving
-    'jessarcher/vim-heritage',
+    "jessarcher/vim-heritage",
 
     -- Enale * searching with visually selected text
-    'nelstrom/vim-visual-star-search',
+    "nelstrom/vim-visual-star-search",
 
     -- Automatically fix indentation when pasting code
     {
-        'sickill/vim-pasta',
+        "sickill/vim-pasta",
         config = function()
-            vim.g.pasta_disable_filetypes = {'fugitive'}
+            vim.g.pasta_disable_filetypes = { "fugitive" }
         end,
     },
+
+    -- Terminal toggle
     {
-        'akinsho/toggleterm.nvim',
+        "akinsho/toggleterm.nvim",
         version = "*",
-        config = true
+        config = true,
+        cmd = "ToggleTerm",
     },
+
+    -- LazyGit integration
     {
         "kdheepak/lazygit.nvim",
         cmd = "LazyGit",
@@ -206,6 +212,8 @@ local plugins = {
             "nvim-lua/plenary.nvim",
         },
     },
+
+    -- Which key for the noobs
     {
         "folke/which-key.nvim",
         event = "VeryLazy",
@@ -217,8 +225,67 @@ local plugins = {
             -- your configuration comes here
             -- or leave it empty to use the default settings
             -- refer to the configuration section below
-        }
+        },
+    },
+
+    -- Glow for md files
+    {
+        "ellisonleao/glow.nvim",
+        config = true,
+        cmd = "Glow",
+    },
+
+    -- Color picker
+    {
+        "uga-rosa/ccc.nvim",
+        lazy = false,
+        config = function()
+            require("ccc").setup()
+        end,
+    },
+
+    -- Highlight same colors
+    {
+        "rrethy/vim-illuminate",
+        lazy = false,
+        config = function()
+            require("plugins.configs.vim-illuminate")
+        end,
+    },
+
+    -- Smooth scrolling
+    {
+        "karb94/neoscroll.nvim",
+        lazy = false,
+        config = function()
+            require("neoscroll").setup()
+        end,
+    },
+
+    -- Add a scrollbar
+    {
+        "petertriho/nvim-scrollbar",
+        lazy = false,
+        config = function()
+            require("scrollbar").setup()
+        end,
+    },
+
+    -- Add Zenmode
+    {
+        "folke/zen-mode.nvim",
+        cmd = "ZenMode",
+    },
+
+    -- TODO: comments
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        lazy = false,
+        config = function()
+            require("todo-comments").setup()
+        end,
     },
 }
 
-require("lazy").setup(plugins, require "plugins.configs.lazy")
+require("lazy").setup(plugins, require("plugins.configs.lazy"))

@@ -41,7 +41,7 @@ map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })
 map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
 -- nvimtree
-map("n", "<leader>t", "<cmd> NvimTreeToggle <CR>")
+map("n", "<leader>t", "<cmd> NvimTreeFindFileToggle <CR>")
 map("n", "<leader>o", "<cmd> NvimTreeFocus <CR>")
 
 -- telescope

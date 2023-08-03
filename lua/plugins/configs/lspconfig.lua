@@ -12,6 +12,33 @@ vim.diagnostic.config({
     }
 })
 
+-- nvim-cmp supports additional completion capabilities
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+-- PHP LSP
+require('lspconfig').intelephense.setup({capabilities = capabilities})
+
+-- JavaScript LSP
+require('lspconfig').volar.setup({
+        capabilities = capabilities,
+    filestypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue'},
+})
+
+-- Tailwindcss LSP
+require('lspconfig').tailwindcss.setup({ capabilities = capabilities })
+
+-- JSON LSP
+require('lspconfig').jsonls.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    json = {
+      schemas = require('schemastore').json.schemas(),
+    },
+  },
+})
+
+
 -- Use LspAttach autocommand to only map the following keys
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("UserLspConfig", {}),

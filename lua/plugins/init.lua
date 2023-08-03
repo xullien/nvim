@@ -12,7 +12,7 @@ local plugins = {
     -- file tree
     {
         "nvim-tree/nvim-tree.lua",
-        cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+        cmd = { "NvimTreeFindFileToggle","NvimTreeToggle", "NvimTreeFocus" },
         config = function()
             require("nvim-tree").setup()
         end,
@@ -118,6 +118,12 @@ local plugins = {
         dependencies = {
             -- formatting , linting
             {
+                'williamboman/mason.nvim',
+                'williamboman/mason-lspconfig.nvim',
+                'b0o/schemastore.nvim',
+                'folke/lsp-colors.nvim',
+                'jose-elias-alvarez/null-ls.nvim',
+                'jayp0521/mason-null-ls.nvim',
                 "jose-elias-alvarez/null-ls.nvim",
                 config = function()
                     require("plugins.configs.null")
@@ -286,6 +292,15 @@ local plugins = {
             require("todo-comments").setup()
         end,
     },
+    {
+        'phpactor/phpactor',
+        ft = 'php',
+        build = 'composer install --no-dev --optimize-autoloader',
+        config = function()
+            vim.keymap.set('n', '<leader>pm', ':PhpactorContextMenu<CR>')
+            vim.keymap.set('n', '<leader>pn', ':PhpactorClassNew<CR>')
+        end,
+    }
 }
 
 require("lazy").setup(plugins, require("plugins.configs.lazy"))

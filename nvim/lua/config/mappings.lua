@@ -41,10 +41,10 @@ map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })
 map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
 -- Improved Terminal Navigation
-map('n', '<S-C-h>', "<cmd>wincmd h<cr>" )
-map('n', '<S-C-j>', "<cmd>wincmd j<cr>" )
-map('n', '<S-C-k>', "<cmd>wincmd k<cr>" )
-map('n', '<S-C-l>', "<cmd>wincmd l<cr>" )
+map('n', '<C-h>', "<cmd>wincmd h<cr>" )
+map('n', '<C-j>', "<cmd>wincmd j<cr>" )
+map('n', '<C-k>', "<cmd>wincmd k<cr>" )
+map('n', '<C-l>', "<cmd>wincmd l<cr>" )
 
 -- nvimtree
 map("n", "<leader>t", "<cmd> NvimTreeFindFileToggle <CR>")

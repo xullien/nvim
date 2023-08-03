@@ -257,7 +257,7 @@ local plugins = {
     -- Color picker
     {
         "uga-rosa/ccc.nvim",
-        event  = "VeryLazy",
+        event = {"BufNewFile", "BufReadPre"},
         config = function()
             require("ccc").setup()
         end,
@@ -266,7 +266,7 @@ local plugins = {
     -- Smooth scrolling
     {
         "karb94/neoscroll.nvim",
-        event = "VeryLazy",
+        event = {"BufNewFile", "BufReadPre"},
         config = function()
             require("neoscroll").setup()
         end,
@@ -275,7 +275,7 @@ local plugins = {
     -- Add a scrollbar
     {
         "petertriho/nvim-scrollbar",
-        event = "VeryLazy",
+        event = {"BufNewFile", "BufReadPre"},
         config = function()
             require("scrollbar").setup()
         end,
@@ -291,7 +291,7 @@ local plugins = {
     {
         "folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
-        event = "VeryLazy",
+        event = {"BufNewFile", "BufReadPre"},
         config = function()
             require("todo-comments").setup()
         end,
@@ -303,6 +303,13 @@ local plugins = {
         config = function()
             vim.keymap.set('n', '<leader>pm', ':PhpactorContextMenu<CR>')
             vim.keymap.set('n', '<leader>pn', ':PhpactorClassNew<CR>')
+        end,
+    },
+    {
+        "zbirenbaum/copilot.lua", 
+        event = {"BufNewFile", "BufReadPre"},
+        config = function()
+            require("copilot").setup()
         end,
     },
 }

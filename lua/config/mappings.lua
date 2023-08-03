@@ -18,7 +18,7 @@ map('v', 'y', 'myy`y')
 map('v', 'Y', 'myY`y')
 
 -- Toggle wrapped
-map('n', '<leader>tw', ':set wrap!<CR>', {silent = true} )
+map('n', '<leader>uw', ':set wrap!<CR>', {silent = true} )
 
 -- Move text up and down
 map('i', '<A-j>', '<Esc>:move .+1<CR>==gi')
